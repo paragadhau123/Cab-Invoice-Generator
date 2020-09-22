@@ -1,5 +1,7 @@
 using NUnit.Framework;
 using Cab_Invoice_Generator;
+using System.Collections.Generic;
+
 namespace Cab_Invoice_Generator_Test
 {
     public class Tests
@@ -35,10 +37,12 @@ namespace Cab_Invoice_Generator_Test
         public void GivenMultipleRides_ShouldReturnTotalFare()
         {
             InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
-            Rides[] rides = { new Rides(2.0, 5),
-                new Rides(0.1, 1)
-            };
-            InvoiceSummary invoiceSummary = invoiceGenerator.CalculateFare(rides);
+            string userId = "parag";
+            Rides firstRide = new Rides(2.0, 5);
+            Rides secondRide = new Rides(0.1, 1);
+            List<Rides> rides = new List<Rides> { firstRide, secondRide };
+            UserAccount.AddRides(userId, rides);
+            InvoiceSummary invoiceSummary = invoiceGenerator.GetInvoiceSummary(userId);
             double expected = 30;
             Assert.AreEqual(expected, invoiceSummary.TotalFare);
 
@@ -48,18 +52,14 @@ namespace Cab_Invoice_Generator_Test
         public void GivenMultipleRides_ShouldReturnInvoiceSummary()
         {
             InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
-
-            Rides[] rides = { new Rides(2.0, 5),
-                new Rides(0.1, 1)
-            };
-            InvoiceSummary invoiceSummary = invoiceGenerator.CalculateFare(rides);
-            InvoiceSummary expected = new InvoiceSummary
-            {
-                TotalNumberOfRides = 2,
-                TotalFare = 30,
-                AverageFarePerRide = 15
-            };
-            object.Equals(expected, invoiceSummary);
+            string userId = "parag";
+            Rides firstRide = new Rides(2.0, 5);
+            Rides secondRide = new Rides(0.1, 1);
+            List<Rides> rides = new List<Rides> { firstRide, secondRide };
+            UserAccount.AddRides(userId, rides);
+            InvoiceSummary invoiceSummary = invoiceGenerator.GetInvoiceSummary(userId);
+            double expected = 30;
+            Assert.AreEqual(expected, invoiceSummary);
         }
     }
 }
