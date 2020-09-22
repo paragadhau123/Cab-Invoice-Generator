@@ -12,6 +12,10 @@ namespace Cab_Invoice_Generator
         public double CalculateFare(double distance, int time)
         {
             double totalFare = distance * minimumCostPerKilometer + time * costPerTime;
+            if (totalFare < minimumFare)
+            {
+                return minimumFare;
+            }
             return totalFare;
         }
     }
