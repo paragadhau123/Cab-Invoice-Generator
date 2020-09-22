@@ -49,17 +49,22 @@ namespace Cab_Invoice_Generator_Test
         }
 
         [Test]
-        public void GivenMultipleRides_ShouldReturnInvoiceSummary()
+        public void GivenUSerId_ShouldReturnInvoiceSummary()
         {
             InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
-            string userId = "parag";
-            Rides firstRide = new Rides(2.0, 5);
-            Rides secondRide = new Rides(0.1, 1);
+            string userId = "John";
+            Rides firstRide = new Rides(3.0, 5);
+            Rides secondRide = new Rides(1, 1);
             List<Rides> rides = new List<Rides> { firstRide, secondRide };
             UserAccount.AddRides(userId, rides);
             InvoiceSummary invoiceSummary = invoiceGenerator.GetInvoiceSummary(userId);
-            double expected = 30;
-            Assert.AreEqual(expected, invoiceSummary);
+            InvoiceSummary expected = new InvoiceSummary
+            {
+                TotalNumberOfRides = 2,
+                TotalFare = 46,
+                AverageFarePerRide = 23
+            };
+            object.Equals(expected, invoiceSummary);
         }
     }
 }
