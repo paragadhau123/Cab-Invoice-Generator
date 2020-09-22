@@ -20,14 +20,22 @@ namespace Cab_Invoice_Generator
             return totalFare;
         }
 
-        public double CalculateFare(Rides[] rides)
+        public InvoiceSummary CalculateFare(Rides[] rides)
         {
             double totalFare = 0;
+            int numberOfRides = 0;
+            double averageFare = 0;
+            InvoiceSummary invoiceSummary = new InvoiceSummary();
+
             foreach (Rides ride in rides)
             {
                 totalFare += this.CalculateFare(ride.distance, ride.time);
+                numberOfRides++;
             }
-            return totalFare;
+            invoiceSummary.TotalNumberOfRides = numberOfRides;
+            invoiceSummary.TotalFare = totalFare;
+            invoiceSummary.CalculateAvergaeFare();
+            return invoiceSummary;
         }
     }
 }
