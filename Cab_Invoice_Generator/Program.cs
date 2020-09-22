@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Cab_Invoice_Generator
+﻿namespace Cab_Invoice_Generator
 {
+    using System;
+
     class Program
     {
         static void Main(string[] args)
