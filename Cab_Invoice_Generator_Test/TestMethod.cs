@@ -10,9 +10,9 @@ namespace Cab_Invoice_Generator_Test
         }
 
         [Test]
-        public void Test1()
+        public void GivenDistanceaAndTime_ShouldReturnTotalFare()
         {
-            Assert.Pass();
+            InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
         }
     }
 }
