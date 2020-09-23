@@ -1,5 +1,8 @@
 ﻿namespace Cab_Invoice_Generator
-{   
+{
+    /// <summary>
+    /// RideType Class
+    /// </summary>
     public class RideType
     {
         public static readonly string NORMALRIDE = "Normal";

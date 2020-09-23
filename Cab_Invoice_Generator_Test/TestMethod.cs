@@ -1,84 +1,103 @@
 namespace Cab_Invoice_Generator_Test
 {
+    using System.Collections.Generic;
     using Cab_Invoice_Generator;
     using NUnit.Framework;
-    using System.Collections.Generic;
+    using NUnit.Framework.Constraints;
 
+    /// <summary>
+    /// Tests Class
+    /// </summary>
     public class Tests
     {
+        public readonly string USERID = "Parag123";
+        public readonly double DISTANCE = 2.0;
+        public readonly int TIME = 5;
+        public readonly string TYPE = "Normal";
+        public InvoiceGenerator INVOICEGENERATOR = null;
+
+        /// <summary>
+        ///  Method SetUp
+        /// </summary>
         [SetUp]
         public void Setup()
         {
+            this.INVOICEGENERATOR = new InvoiceGenerator();
         }
-        InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
 
+        /// <summary>
+        /// Test Method to Find Total Fare
+        /// </summary>
         [Test]
         public void GivenDistanceAndTime_ShouldReturnTotalFare()
         {
-            double distance = 2.0;
-            int time = 5;
-            string type = "Normal";
-            double fare = invoiceGenerator.CalculateFare(distance, time, type);
+            double fare = this.INVOICEGENERATOR.CalculateFare(this.DISTANCE, this.TIME, this.TYPE);
             double expected = 25;
             Assert.AreEqual(expected, fare);
         }
 
+        /// <summary>
+        /// Test Method to Find Total Fare
+        /// </summary>
         [Test]
         public void GivenLessDistanceAndTime_ShouldReturnMinFare()
         {
-            double distance = 0.1;
-            int time = 1;
-            string type = "Normal";
-            double fare = invoiceGenerator.CalculateFare(distance, time, type);
+            double fare = this.INVOICEGENERATOR.CalculateFare(0.1, 1, this.TYPE);
             double expected = 5;
             Assert.AreEqual(expected, fare);
         }
 
+        /// <summary>
+        /// Test Method to Find Total Fare
+        /// </summary>
         [Test]
         public void GivenMultipleRides_ShouldReturnTotalFare()
         {
-            string userId = "parag";
             Rides firstRide = new Rides(2.0, 5, "Premium");
             Rides secondRide = new Rides(0.1, 1, "Normal");
             List<Rides> rides = new List<Rides> { firstRide, secondRide };
-            UserAccount.AddRides(userId, rides);
-            InvoiceSummary invoiceSummary = invoiceGenerator.GetInvoiceSummary(userId);
+            UserAccount.AddRides(this.USERID, rides);
+            InvoiceSummary invoiceSummary = this.INVOICEGENERATOR.GetInvoiceSummary(this.USERID);
             double expected = 30;
             Assert.AreEqual(expected, invoiceSummary.TotalFare);
         }
 
+        /// <summary>
+        /// Test Method to Find Total Fare
+        /// </summary>
         [Test]
         public void GivenUSerId_ShouldReturnInvoiceSummary()
         {
-            string userId = "parag";
-            Rides firstRide = new Rides(3.0, 5, "Premium");
-            Rides secondRide = new Rides(1, 1, "Normal");
-            List<Rides> rides = new List<Rides> { firstRide, secondRide };
-            UserAccount.AddRides(userId, rides);
-            InvoiceSummary invoiceSummary = invoiceGenerator.GetInvoiceSummary(userId);
+         Rides firstRide = new Rides(2.0, 5, "Premium");
+         Rides secondRide = new Rides(0.1, 1, "Normal");
+        List<Rides> rides = new List<Rides> { firstRide, secondRide };
+            UserAccount.AddRides(this.USERID, rides);
+            InvoiceSummary invoiceSummary = this.INVOICEGENERATOR.GetInvoiceSummary(this.USERID);
             InvoiceSummary expected = new InvoiceSummary
             {
                 TotalNumberOfRides = 2,
-                TotalFare = 46,
+                TotalFare = 90.0,
                 AverageFarePerRide = 23
             };
-            object.Equals(expected, invoiceSummary);
+           Assert.AreEqual(expected.TotalFare, invoiceSummary.TotalFare);
         }
 
+        /// <summary>
+        /// Test Method to Find Total Fare
+        /// </summary>
         [Test]
         public void GivenPremiumRide_ShouldReturnInvoiceSummary()
         {
-            string userId = "parag";
-            Rides firstRide = new Rides(3.0, 5, "Premium");
-            Rides secondRide = new Rides(1, 1, "Normal");
-            List<Rides> rides = new List<Rides> { firstRide, secondRide };
-            UserAccount.AddRides(userId, rides);
-            InvoiceSummary invoiceSummary = invoiceGenerator.GetInvoiceSummary(userId);
+        Rides firstRide = new Rides(2.0, 5, "Premium");
+        Rides secondRide = new Rides(0.1, 1, "Normal");
+        List<Rides> rides = new List<Rides> { firstRide, secondRide };
+            UserAccount.AddRides(this.USERID, rides);
+            InvoiceSummary invoiceSummary = this.INVOICEGENERATOR.GetInvoiceSummary(this.USERID);
             InvoiceSummary expected = new InvoiceSummary
             {
                 TotalNumberOfRides = 2,
-                TotalFare = 76.0,
-                AverageFarePerRide = 33
+                TotalFare = 60.0,
+                AverageFarePerRide = 23
             };
             Assert.AreEqual(expected.TotalFare, invoiceSummary.TotalFare);
         }

@@ -1,5 +1,8 @@
 ﻿namespace Cab_Invoice_Generator
 {
+    /// <summary>
+    /// InvoiceSummary Class
+    /// </summary>
     public class InvoiceSummary
     {
         public int TotalNumberOfRides { get; set; }

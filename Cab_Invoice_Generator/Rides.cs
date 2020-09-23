@@ -1,5 +1,8 @@
 ﻿namespace Cab_Invoice_Generator
-{   
+{
+    /// <summary>
+    /// Rides Class
+    /// </summary>
     public class Rides
     {
         public double DISTANCE;
