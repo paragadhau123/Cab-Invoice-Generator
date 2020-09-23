@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Cab_Invoice_Generator
-{
+﻿namespace Cab_Invoice_Generator
+{   
     public class Rides
     {
-        public double distance;
-        public int time;
-        public string rideType;
+        public double DISTANCE;
+        public int TIME;
+        public string RIDETYPE;
 
-        public Rides(double inputDistance, int inputTime, string inputRideType = "Normal")
+        public Rides(double inputDistance, int inputTime, string inputRideType)
         {
-            distance = inputDistance;
-            time = inputTime;
-            rideType = inputRideType;
+            this.DISTANCE = inputDistance;
+            this.TIME = inputTime;
+            this.RIDETYPE = inputRideType;
         }
     }
 }

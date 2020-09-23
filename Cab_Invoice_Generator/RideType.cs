@@ -1,30 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Cab_Invoice_Generator
-{
+﻿namespace Cab_Invoice_Generator
+{   
     public class RideType
     {
-        public static readonly string normalRide = "Normal";
-        public static readonly string premiumRide = "Premium";
-        public readonly int costPerTime;
-        public readonly double minimumCostPerKilometer;
-        public readonly double minimumFare;
+        public static readonly string NORMALRIDE = "Normal";
+        public static readonly string PREMIUMRIDE = "Premium";
+        public readonly int COSTPERTIME;
+        public readonly double MINIMUMCOSTPERKILOMETER;
+        public readonly double MINIMUMFARE;
 
         public RideType(string rideType)
         {
-            if (rideType.ToLower() == premiumRide)
+            if (rideType.ToLower() == PREMIUMRIDE)
             {
-                costPerTime = 2;
-                minimumCostPerKilometer = 15;
-                minimumFare = 20;
+                this.COSTPERTIME = 2;
+                this.MINIMUMCOSTPERKILOMETER = 15;
+                this.MINIMUMFARE = 20;
             }
             else
             {
-                costPerTime = 1;
-                minimumCostPerKilometer = 10;
-                minimumFare = 5;
+                this.COSTPERTIME = 1;
+                this.MINIMUMCOSTPERKILOMETER = 10;
+                this.MINIMUMFARE = 5;
             }
         }
     }

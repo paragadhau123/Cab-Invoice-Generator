@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Cab_Invoice_Generator
-{
+﻿namespace Cab_Invoice_Generator
+{   
     public class InvoiceGenerator
     {
-        public double CalculateFare(double distance, int time, string type = "Normal")
+        public double CalculateFare(double distance, int time, string type)
         {
             RideType rideType = new RideType(type);
-            double totalFare = distance * rideType.minimumCostPerKilometer + time * rideType.costPerTime;
-            if (totalFare < rideType.minimumFare)
+            double totalFare = (distance * rideType.MINIMUMCOSTPERKILOMETER) + (time * rideType.COSTPERTIME);
+            if (totalFare < rideType.MINIMUMFARE)
             {
-                return rideType.minimumFare;
+                return rideType.MINIMUMFARE;
             }
+
             return totalFare;
         }
 
@@ -23,21 +20,19 @@ namespace Cab_Invoice_Generator
             double totalFare = 0;
             int numberOfRides = 0;
 
-            if (UserAccount.account.ContainsKey(userId))
+            if (UserAccount.ACCOUNTS.ContainsKey(userId))
             {
-               
-                foreach (Rides ride in UserAccount.account[userId])
+                foreach (Rides ride in UserAccount.ACCOUNTS[userId])
                 {
-                    totalFare += this.CalculateFare(ride.distance, ride.time, ride.rideType);
+                    totalFare += this.CalculateFare(ride.DISTANCE, ride.TIME, ride.RIDETYPE);
                     numberOfRides++;
                 }
-                
-            }
+              }
+
             invoiceSummary.TotalNumberOfRides = numberOfRides;
             invoiceSummary.TotalFare = totalFare;
             invoiceSummary.CalculateAvergaeFare();
             return invoiceSummary;
-
         }
     }
 }
