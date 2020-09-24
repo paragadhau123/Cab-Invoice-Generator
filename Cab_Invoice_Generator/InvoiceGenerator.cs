@@ -1,4 +1,9 @@
-﻿namespace Cab_Invoice_Generator
+﻿//-----------------------------------------------------------------------
+// <copyright file="InvoiceGenerator.cs" company="CompanyName">
+//     Company copyright tag.
+// </copyright>
+//-----------------------------------------------------------------------
+namespace Cab_Invoice_Generator
 {
     using System.Text.RegularExpressions;
 
@@ -7,14 +12,17 @@
     /// </summary>
     public class InvoiceGenerator
     {
-        public readonly string NAMEPATTERN = "^[A-Z]{1}[a-z]{2,5}[0-9]{2,5}$";
+        /// <summary>
+        /// User id regular expression pattern
+        /// </summary>
+        public readonly string USERIDPATTERN = "^[A-Z]{1}[a-z]{2,5}[0-9]{2,5}$";
 
         /// <summary>
         /// Method to validate first name
         /// </summary>
         /// <param name="distance">total distance</param>
         /// <param name="time">total time</param>
-        /// <param name="type">normal or primium</param>
+        /// <param name="type">define type</param>
         /// <returns>total fare</returns>
         public double CalculateFare(double distance, int time, string type)
         {
@@ -32,13 +40,13 @@
         /// Method to validate first name
         /// </summary>
         /// <param name="userId">total distance</param>
-        /// <returns>InvoiceSummary</returns>
+        /// <returns>Invoice Summary</returns>
         public InvoiceSummary GetInvoiceSummary(string userId)
         {      
           InvoiceSummary invoiceSummary = new InvoiceSummary();
             double totalFare = 0;
             int numberOfRides = 0;
-            if (Regex.Match(userId, this.NAMEPATTERN).Success)
+            if (Regex.Match(userId, this.USERIDPATTERN).Success)
             {
                 if (UserAccount.ACCOUNTS.ContainsKey(userId))
                 {

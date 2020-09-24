@@ -1,19 +1,42 @@
+//-----------------------------------------------------------------------
+// <copyright file="TestMethod.cs" company="CompanyName">
+//     Company copyright tag.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace Cab_Invoice_Generator_Test
 {
     using System.Collections.Generic;
     using Cab_Invoice_Generator;
     using NUnit.Framework;
-    using NUnit.Framework.Constraints;
 
     /// <summary>
     /// Tests Class
     /// </summary>
-    public class Tests
+    public class TestMethod
     {
+        /// <summary>
+        /// User id variable
+        /// </summary>
         public readonly string USERID = "Parag123";
+
+        /// <summary>
+        /// Distance variable
+        /// </summary>
         public readonly double DISTANCE = 2.0;
+
+        /// <summary>
+        /// Time variable
+        /// </summary>
         public readonly int TIME = 5;
+
+        /// <summary>
+        /// Type variable
+        /// </summary>
         public readonly string TYPE = "Normal";
+
+        /// <summary>
+        /// InvoiceGenerator object 
+        /// </summary>
         public InvoiceGenerator INVOICEGENERATOR = null;
 
         /// <summary>

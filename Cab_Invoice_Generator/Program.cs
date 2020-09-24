@@ -1,4 +1,9 @@
-﻿namespace Cab_Invoice_Generator
+﻿//-----------------------------------------------------------------------
+// <copyright file="Program.cs" company="CompanyName">
+//     Company copyright tag.
+// </copyright>
+//-----------------------------------------------------------------------
+namespace Cab_Invoice_Generator
 {
     using System;
 
